@@ -48,9 +48,9 @@ pip3 install --upgrade python-language-server
 ### Midway
 ### Cloud Platforms (GCP and AWS)
 
-## Examples
+## Tutorials
 ### Data engineering in R
-### Munging data in R
+### Data cleanup in R
 ### Machine learning in scikit-learn and TensorFlow
 ### SQL and DBT
 ### Visualizing in R
