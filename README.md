@@ -1,4 +1,4 @@
-# datasci-workshop
+# Data Science Workshop
 
 ### Install R
 https://cloud.r-project.org/
