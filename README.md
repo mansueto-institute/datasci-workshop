@@ -47,22 +47,25 @@ pip3 install --upgrade python-language-server
 * AWS
 
 ## Tutorials
-### ETL and data engineering in R
-### Data cleanup in R
-### ML with scikit-learn 
-### ML with TensorFlow
-### SQL and DBT
-### Plots in R
-### Automated decks in R
-### R Shiny
-### Web dev
-### Containers
-### Quality control
+### ETL and Analytics
+* Data cleanup in R
+* Data engineering in R
+* SQL and DBT
+* Containers
+* Quality control
+### Viz
+* Plots in R
+* Automated decks in R
+* R Shiny
+* Web dev
+### ML
+* ML with scikit-learn 
+* ML with TensorFlow
 
-## Data Sources
-### Person-level
-### Address-level
-### Raster
-### Vector
-### Microdata
-### Enhancements
+### Data Sources
+* Person-level
+* Address-level
+* Raster
+* Vector
+* Microdata
+* Enhancements
