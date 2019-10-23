@@ -55,6 +55,7 @@ pip3 install --upgrade python-language-server
 ### Visualizing in R
 ### R Shiny
 ### Web Dev
+### Containers
 
 ## Troubleshooting and QC
 ### Code
