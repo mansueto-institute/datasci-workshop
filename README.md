@@ -52,7 +52,8 @@ pip3 install --upgrade python-language-server
 ### ML with scikit-learn 
 ### ML with TensorFlow
 ### SQL and DBT
-### Visualizing in R
+### Plots in R
+### Automated decks in R
 ### R Shiny
 ### Web dev
 ### Containers
