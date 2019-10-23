@@ -9,7 +9,7 @@ https://cloud.r-project.org/
 * Install R Studio
 https://rstudio.com/products/rstudio/download/
 
-### Python setup
+### Python
 * Install Anaconda
 https://www.anaconda.com/distribution/#macos
 * Install pyenv
