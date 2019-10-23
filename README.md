@@ -1,10 +1,14 @@
 # Data Science Workshop
 
+## R
+
 ### Install R
 https://cloud.r-project.org/
 
 ### Install R Studio
 https://rstudio.com/products/rstudio/download/
+
+## Python
 
 ### Install Anaconda
 https://www.anaconda.com/distribution/#macos
@@ -35,3 +39,21 @@ pip3 install --upgrade pycodestyle
 pip3 install --upgrade pylint
 pip3 install --upgrade python-language-server
 ```
+
+## GitHub
+
+## Midway
+
+## Cloud Platforms (GCP and AWS)
+
+## Workflow examples
+
+## Troubleshooting 
+
+### Code
+
+### Data
+
+
+
+
