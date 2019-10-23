@@ -49,13 +49,14 @@ pip3 install --upgrade python-language-server
 ## Tutorials
 ### ETL and data engineering in R
 ### Data cleanup in R
-### Machine learning in scikit-learn and TensorFlow
+### ML with scikit-learn 
+### ML with TensorFlow
 ### SQL and DBT
 ### Visualizing in R
 ### R Shiny
 ### Web dev
 ### Containers
-### Troubleshooting and QC
+### Quality control
 
 ## Data Sources
 ### Person-level
