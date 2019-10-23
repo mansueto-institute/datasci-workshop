@@ -50,6 +50,7 @@ pip3 install --upgrade python-language-server
 
 ## Examples
 ### Data engineering in R
+### Munging data in R
 ### Machine learning in scikit-learn and TensorFlow
 ### SQL and DBT
 ### Visualizing in R
