@@ -63,17 +63,17 @@ pip3 install --upgrade python-language-server
 ## Tutorials
 
 ### Programming
-* ETL and Analytics
-  * Data cleanup in R
-  * Data engineering in R
+* ETL
+  * Data engineering pipelines in R
   * SQL and DBT
-  * Containers
-  * Quality control
-* Viz
+  * Git and containers 
+  * QC practices
+* Analytics and Viz
+  * Aggregation in R and SQL
   * Plots in R
   * Automated decks in R
   * R Shiny
-  * Web dev
+  * Web dev in HTML, JS, CSS
 * ML
   * ML with scikit-learn 
   * ML with TensorFlow
