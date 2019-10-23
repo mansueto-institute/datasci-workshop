@@ -37,12 +37,14 @@ pip3 install --upgrade python-language-server
 ```
 
 ## Repositories
-### GitHub tutorial
-### DockerHub tutorial
+### GitHub 
+### DockerHub 
 
 ## Infrastructure
-### Midway
-### Cloud Platforms (GCP and AWS)
+### Midway 
+### Cloud 
+* GCP 
+* AWS
 
 ## Tutorials
 ### ETL and data engineering in R
@@ -51,9 +53,14 @@ pip3 install --upgrade python-language-server
 ### SQL and DBT
 ### Visualizing in R
 ### R Shiny
-### Web Dev
+### Web dev
 ### Containers
+### Troubleshooting and QC
 
-## Troubleshooting and QC
-### Code
-### Data
+## Data Sources
+### Person-level
+### Address-level
+### Raster
+### Vector
+### Microdata
+### Enhancements
