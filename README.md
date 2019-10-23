@@ -38,13 +38,27 @@ pip3 install --upgrade python-language-server
 
 ## Repositories
 ### GitHub 
+* Installation
+* Setup
+* Basics
 ### DockerHub 
+* Installation
+* Setup
+* Basics
 
 ## Infrastructure
 ### Midway 
+* Setup
+* Basics
 ### Cloud 
 * GCP 
+** Installation
+** Setup
+** Basics
 * AWS
+** Installation
+** Setup
+** Basics
 
 ## Tutorials
 ### ETL and Analytics
@@ -63,9 +77,13 @@ pip3 install --upgrade python-language-server
 * ML with TensorFlow
 
 ### Data Sources
+* Microdata
 * Person-level
 * Address-level
-* Raster
-* Vector
-* Microdata
+* Geographic aggregates
+* Spatial
+** Raster
+** Vector
 * Enhancements
+** Geocoding
+** Standardization
