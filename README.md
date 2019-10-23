@@ -5,7 +5,6 @@
 ### R
 * Install R
 https://cloud.r-project.org/
-
 * Install R Studio
 https://rstudio.com/products/rstudio/download/
 
