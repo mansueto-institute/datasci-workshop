@@ -81,6 +81,7 @@ pip3 install --upgrade python-language-server
   * Inference
     * Small sample prediction
     * Causal trees
+    * Survey research
   * Other techniques
     * Computational geometry
     * Clustering
