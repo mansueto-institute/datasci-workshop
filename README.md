@@ -50,7 +50,7 @@ pip3 install --upgrade python-language-server
 
 ## Examples
 ### Data engineering in R
-### Machine learning in SciKitLearn and TensorFlow
+### Machine learning in scikit-learn and TensorFlow
 ### SQL and DBT
 ### Visualizing in R
 ### R Shiny
@@ -59,7 +59,3 @@ pip3 install --upgrade python-language-server
 ## Troubleshooting and QC
 ### Code
 ### Data
-
-
-
-
