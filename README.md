@@ -37,8 +37,8 @@ pip3 install --upgrade python-language-server
 ```
 
 ## Repositories
-### GitHub
-### DockerHub
+### GitHub tutorial
+### DockerHub tutorial
 
 ## Infrastructure
 ### Midway
