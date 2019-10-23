@@ -63,20 +63,27 @@ pip3 install --upgrade python-language-server
 ## Tutorials
 
 ### Programming
-* ETL
-  * Data engineering pipelines in R
-  * SQL and DBT
-  * Git and containers 
-  * QC practices
+* Data engineering
+  * ETL pipelines and wrangling in R
+  * Data in SQL and DBT
+  * Dev to prod with Git and containers 
+  * QC best practices
 * Analytics and Viz
   * Aggregation in R and SQL
   * Plots in R
   * Automated decks in R
   * R Shiny
   * Web dev in HTML, JS, CSS
-* ML
-  * ML with scikit-learn 
-  * ML with TensorFlow
+* Data Science
+  * Prediction
+    * ML with scikit-learn 
+    * ML with TensorFlow
+  * Inference
+    * Small sample prediction
+    * Causal trees
+  * Other techniques
+    * Computational geometry
+    * Clustering
 
 ### Data Sources
 * Microdata
