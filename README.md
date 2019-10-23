@@ -45,7 +45,7 @@ pip3 install --upgrade python-language-server
 ### Cloud Platforms (GCP and AWS)
 
 ## Tutorials
-### Data engineering in R
+### ETL and data engineering in R
 ### Data cleanup in R
 ### Machine learning in scikit-learn and TensorFlow
 ### SQL and DBT
