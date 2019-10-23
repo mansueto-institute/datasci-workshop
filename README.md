@@ -1,22 +1,20 @@
 # Data Science Workshop
 
-## R setup
+## Setup
 
-### Install R
+### R
+* Install R
 https://cloud.r-project.org/
 
-### Install R Studio
+* Install R Studio
 https://rstudio.com/products/rstudio/download/
 
-## Python setup
-
-### Install Anaconda
+### Python setup
+* Install Anaconda
 https://www.anaconda.com/distribution/#macos
-
-### Install pyenv
+* Install pyenv
 https://github.com/pyenv/pyenv#basic-github-checkout
-
-### Setup pyenv
+* Setup pyenv
 ```
 pyenv install 3.7.1
 pyenv install 3.6.7
@@ -24,8 +22,7 @@ pyenv install 2.7.14
 pyenv global 3.6.7
 eval "$(pyenv init -)"
 ```
-
-### Install utility packages
+* Install utility packages
 ```
 pip3 install --upgrade pip
 pip3 install --upgrade virtualenv
