@@ -52,38 +52,40 @@ pip3 install --upgrade python-language-server
 * Basics
 ### Cloud 
 * GCP 
-** Installation
-** Setup
-** Basics
+  * Installation
+  * Setup
+  * Basics
 * AWS
-** Installation
-** Setup
-** Basics
+  * Installation
+  * Setup
+  * Basics
 
 ## Tutorials
-### ETL and Analytics
-* Data cleanup in R
-* Data engineering in R
-* SQL and DBT
-* Containers
-* Quality control
-### Viz
-* Plots in R
-* Automated decks in R
-* R Shiny
-* Web dev
-### ML
-* ML with scikit-learn 
-* ML with TensorFlow
+
+### Programming
+* ETL and Analytics
+  * Data cleanup in R
+  * Data engineering in R
+  * SQL and DBT
+  * Containers
+  * Quality control
+* Viz
+  * Plots in R
+  * Automated decks in R
+  * R Shiny
+  * Web dev
+* ML
+  * ML with scikit-learn 
+  * ML with TensorFlow
 
 ### Data Sources
 * Microdata
-* Person-level
-* Address-level
-* Geographic aggregates
+  * Person-level
+  * Address-level
+  * Geographic aggregates
 * Spatial
-** Raster
-** Vector
+  * Raster
+  * Vector
 * Enhancements
-** Geocoding
-** Standardization
+  * Geocoding
+  * Standardization
