@@ -78,10 +78,8 @@ pip3 install --upgrade python-language-server
   * Prediction
     * ML with scikit-learn 
     * ML with TensorFlow
-  * Inference
     * Small sample prediction
     * Causal trees
-    * Survey research
   * Other techniques
     * Computational geometry
     * Clustering
