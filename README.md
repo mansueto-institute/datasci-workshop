@@ -1,6 +1,6 @@
 # Data Science Workshop
 
-## R
+## R setup
 
 ### Install R
 https://cloud.r-project.org/
@@ -8,7 +8,7 @@ https://cloud.r-project.org/
 ### Install R Studio
 https://rstudio.com/products/rstudio/download/
 
-## Python
+## Python setup
 
 ### Install Anaconda
 https://www.anaconda.com/distribution/#macos
@@ -40,18 +40,24 @@ pip3 install --upgrade pylint
 pip3 install --upgrade python-language-server
 ```
 
-## GitHub
+## Repositories
+### GitHub
+### DockerHub
 
-## Midway
+## Infrastructure
+### Midway
+### Cloud Platforms (GCP and AWS)
 
-## Cloud Platforms (GCP and AWS)
+## Examples
+### Data engineering in R
+### Machine learning in SciKitLearn and TensorFlow
+### SQL and DBT
+### Visualizing in R
+### R Shiny
+### Web Dev
 
-## Workflow examples
-
-## Troubleshooting 
-
+## Troubleshooting and QC
 ### Code
-
 ### Data
 
 
