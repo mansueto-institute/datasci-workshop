@@ -69,7 +69,7 @@ pip3 install --upgrade python-language-server
   * Dev to prod with Git and containers 
   * QC best practices
 * Analytics and Viz
-  * Aggregation in R and SQL
+  * Aggregation and analytics in R
   * Plots in R
   * Automated decks in R
   * R Shiny
