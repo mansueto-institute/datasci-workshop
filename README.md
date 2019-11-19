@@ -38,10 +38,9 @@ pip3 install --upgrade python-language-server
 
 ## Repositories
 ### GitHub 
-* Installation
 * Setup
 * Basics
-### DockerHub 
+### Docker 
 * Installation
 * Setup
 * Basics
