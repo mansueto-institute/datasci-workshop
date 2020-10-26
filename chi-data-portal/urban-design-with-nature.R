@@ -1,4 +1,8 @@
 
+# Author: Nicholas Marchio, nmarchio@uchicago.edu
+# Date: 10/26/2020
+# Source: https://github.com/mansueto-institute/datasci-workshop/blob/master/chi-data-portal/urban-design-with-nature.R
+
 library(sf)
 library(dplyr)
 library(ggplot2)
@@ -129,7 +133,7 @@ tract_traffic_crashes_summary <- tract_traffic_crashes %>%
           
 # Visualize ---------------------------------------------------------------
 
-# Crop out O'Hare
+# Crop out O'Hare (not analytically useful)
 chi_bbox <- st_bbox(tract_traffic_crashes) 
 chi_bbox_crop <- st_bbox(c(xmin = -87.862226, 
                            xmax = chi_bbox[[3]], 
@@ -140,13 +144,13 @@ tract_traffic_crashes <- st_crop(tract_traffic_crashes, y = chi_bbox_crop) %>%
          lat = map_dbl(geometry, ~st_point_on_surface(.x)[[2]])) 
 
 # Choropleth of Bike Routes
-ggplot() + 
+(pchoro <- ggplot() + 
   geom_sf(data = st_union(tract_traffic_crashes)) +
   geom_sf(data = tract_traffic_crashes, aes(fill = injuries_total, color = injuries_total),  size = .01 ) + #
   scale_fill_gradient2(low =  "#ffffff", high = "#F77552", labels = comma, name = "Reported\nInjuries") +
   scale_color_gradient2(low =  "#ffffff", high = "#F77552", labels = comma, name = "Reported\nInjuries") +
   geom_sf(data = bike_routes, color = alpha("#0194D3", .5), size = .7) + 
-  labs(title = "Reported Bike Crashes (2015-2020)", caption = "Source: Chicago Data Portal") +
+  labs(title = "Reported Bike Crashes (2015-2020) and Bike Lanes", caption = "Source: Chicago Data Portal") +
   coord_sf(clip = "on") + theme_minimal() +  
   theme(axis.line = element_blank(),
         axis.text = element_blank(),
@@ -161,14 +165,16 @@ ggplot() +
         panel.grid.minor = element_blank(),
         plot.background = element_rect(fill = "#f5f5f2", color = NA),
         text = ggplot2::element_text(family = "Lato"),
-        plot.title = element_text(face = 'bold',size=12),
-        legend.title = element_text(size= 9),
-        legend.text = element_text(size= 9),
+        plot.title = element_text(face = 'bold',size=14),
+        legend.title = element_text(size= 12),
+        legend.text = element_text(size= 10),
         plot.subtitle=element_text(size=9, hjust = .5, face = 'bold'),
-        plot.caption=element_text(size=10, hjust = 0, face = 'italic'),
+        plot.caption=element_text(size=12, hjust = 0, face = 'italic'),
         panel.background = element_rect(fill = "#f5f5f2", color = NA), 
         legend.background = element_rect(fill = "#f5f5f2", color = NA),
-        panel.border = element_blank()) 
+        panel.border = element_blank()))
+
+ggsave(paste0(path_wd,'/bike_choropleth.png'), pchoro, dpi = 400, height =8, width=6) #
 
 # Bar Chart Ranking Crash Areas
 tract_summary <- tract_traffic_crashes_summary %>% filter(rank <= 30) %>%
@@ -177,7 +183,7 @@ tract_summary_order <- unique(tract_summary$community)
 tract_summary$community <- factor(tract_summary$community, levels = rev(tract_summary_order))
 
 colorhexes <- c("#0194D3","#D1D3D4","#ffc425","#49DEA4")
-ggplot(data = tract_summary,
+(pbar <- ggplot(data = tract_summary,
        aes(x = community,
            y = value,
            fill = variable), 
@@ -200,5 +206,7 @@ ggplot(data = tract_summary,
                  axis.title= ggplot2::element_text(size=12),
                  axis.text.y = ggplot2::element_text(size=12),
                  plot.subtitle = ggplot2::element_text(size=12, face = 'bold'),
-                 text = ggplot2::element_text(family = "Lato", size = 13, color = "#161616")) 
+                 text = ggplot2::element_text(family = "Lato", size = 13, color = "#161616")))
+
+ggsave(paste0(path_wd,'/bike_stackedbar.png'), pbar , dpi = 400, height =8, width=9) #
 
