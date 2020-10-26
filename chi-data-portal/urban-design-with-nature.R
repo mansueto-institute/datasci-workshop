@@ -199,14 +199,17 @@ colorhexes <- c("#0194D3","#D1D3D4","#ffc425","#49DEA4")
   ggplot2::labs(y= "Reported Injuries", 
                 x = 'Community', 
                 fill = '',
-                title = 'Top 30 Community Areas by Reported Bike Crashes (2015-2020)') +
+                title = 'Top 30 Community Areas by Reported Bike Crashes (2015-2020)',
+                caption = "Source: Chicago Data Portal") +
   ggplot2::theme(legend.position ="bottom",
                  panel.border = ggplot2::element_blank(),
                  legend.title = ggplot2::element_blank(),
                  axis.title= ggplot2::element_text(size=12),
                  axis.text.y = ggplot2::element_text(size=12),
                  plot.subtitle = ggplot2::element_text(size=12, face = 'bold'),
+                 plot.caption=element_text(size=12, hjust = 0, face = 'italic'),
                  text = ggplot2::element_text(family = "Lato", size = 13, color = "#161616")))
 
 ggsave(paste0(path_wd,'/bike_stackedbar.png'), pbar , dpi = 400, height =8, width=9) #
+
 
