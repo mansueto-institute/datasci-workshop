@@ -3,23 +3,25 @@
 # Date: 10/26/2020
 # Source: https://github.com/mansueto-institute/datasci-workshop/blob/master/chi-data-portal/urban-design-with-nature.R
 
+
 library(sf)
 library(dplyr)
 library(ggplot2)
-library(purrr)
-library(tigris)
-library(tidyverse)
-library(tidycensus)
-library(stringr)
-library(readxl)
-library(viridis)
-library(scales)
-library(lubridate)
 library(reshape2)
-library(ggrepel)
-library(patchwork)
-library(ggforce)
-library(nngeo)
+library(tidyverse)
+library(stringr)
+library(scales)
+#library(purrr)
+#library(tigris)
+#library(tidycensus)
+#library(readxl)
+#library(viridis)
+#library(lubridate)
+#library(ggrepel)
+#library(patchwork)
+#library(ggforce)
+#library(nngeo)
+
 
 # Why does this matter? 
 # E-bikes present a radical solution to urban mobility challenges that is sustainable, affordable,
