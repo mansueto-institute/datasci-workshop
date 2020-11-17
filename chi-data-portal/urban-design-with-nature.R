@@ -3,7 +3,6 @@
 # Date: 10/26/2020
 # Source: https://github.com/mansueto-institute/datasci-workshop/blob/master/chi-data-portal/urban-design-with-nature.R
 
-
 library(sf)
 library(dplyr)
 library(ggplot2)
@@ -22,20 +21,8 @@ library(scales)
 #library(ggforce)
 #library(nngeo)
 
-
-# Why does this matter? 
-# E-bikes present a radical solution to urban mobility challenges that is sustainable, affordable,
-# and allow for point-to-point transit in a timely manner. However, current bike infrastructure
-# is already limited and unsafe. To achieve more sustainable transit outcomes urban policy
-# makers need to identify and prioritize areas of the city most in need of better infrastructure. 
-
 # Set file path of parent directory
 path_wd <- '/Users/nm/Desktop/projects/work/mansueto/workshops/chi-data-portal'
-
-# Obtain Census API Key here: https://api.census.gov/data/key_signup.html
-#census_api_key('API_KEY', install = TRUE) 
-readRenviron("~/.Renviron")
-
 
 # Import data -------------------------------------------------------------
 
@@ -52,24 +39,10 @@ chicago_tracts <- sf::st_read(chicago_tracts_url) %>% st_as_sf() %>%
   select(geoid10) %>%
   rename(geoid = geoid10)
 
-# Import Chicago blocks
-# chicago_blocks_url <- 'https://data.cityofchicago.org/api/geospatial/mfzt-js4n?method=export&format=GeoJSON'
-# chicago_blocks <- sf::st_read(chicago_blocks_url) %>% st_as_sf() %>%
-#   mutate_at(vars(geoid10),list(as.character)) %>%
-#   mutate(geoid10 = str_pad(geoid10, width=15, side="left", pad="0")) %>%
-#   select(geoid10) %>%
-#   rename(geoid = geoid10)
-
 # Import bike routes
 bike_routes_url <- 'https://data.cityofchicago.org/api/geospatial/3w5d-sru8?method=export&format=GeoJSON'
 bike_routes <- sf::st_read(bike_routes_url) %>% st_as_sf() %>%
   st_join(., community_areas, largest = TRUE)
-
-# Import street routes
-# street_routes_url <- 'https://data.cityofchicago.org/api/geospatial/6imu-meau?method=export&format=GeoJSON'
-# street_routes <- sf::st_read(street_routes_url) %>% 
-#   st_as_sf() %>%
-#   filter(!st_is_empty(geometry))
 
 # Import traffic crashes
 traffic_crashes_url <- 'https://data.cityofchicago.org/api/views/85ca-t3if/rows.csv'
@@ -84,17 +57,7 @@ traffic_crashes <- read_csv(traffic_crashes_url) %>%
 
 # Process data ------------------------------------------------------------
 
-# block_traffic_crashes <- traffic_crashes %>%
-#   st_join(., chicago_blocks) %>%
-#   st_drop_geometry() %>%  
-#   group_by(geoid) %>% 
-#   summarize_at(vars(injuries_total, injuries_dooring, injuries_fatal, injuries_incapacitating), list(sum), na.rm=TRUE)  %>%
-#   ungroup() 
-# 
-# block_traffic_crashes <- left_join(chicago_blocks, block_traffic_crashes, by = c('geoid' = 'geoid')) %>%
-#   mutate_at(vars(injuries_total, injuries_fatal, injuries_incapacitating), ~replace_na(., 0)) %>%
-#   st_as_sf()
-
+# Join tract to traffic crashes
 tract_traffic_crashes <- traffic_crashes %>%
   st_join(., chicago_tracts) %>%
   st_drop_geometry() %>%  
@@ -106,8 +69,10 @@ tract_traffic_crashes <- left_join(chicago_tracts, tract_traffic_crashes, by = c
   mutate_at(vars(injuries_total, injuries_fatal, injuries_incapacitating), ~replace_na(., 0)) %>%
   st_as_sf()
 
+# Choropleth data - sf
 tract_traffic_crashes <- st_join(tract_traffic_crashes, community_areas, largest=TRUE)
 
+# Bar chart data -df
 tract_traffic_crashes_summary <- tract_traffic_crashes %>%
   st_drop_geometry() %>%  
   group_by(community) %>% 
@@ -115,7 +80,7 @@ tract_traffic_crashes_summary <- tract_traffic_crashes %>%
   ungroup() %>%
   mutate(injuries_other = injuries_total - (injuries_dooring + injuries_fatal + injuries_incapacitating)) %>%
   select(community, injuries_other, injuries_dooring, injuries_fatal, injuries_incapacitating) %>%
-  melt(id.vars = c('community')) %>%
+  melt(id.vars = c('community'))  %>%
   mutate(variable = case_when(variable == 'injuries_other' ~ 'Other', 
                               variable == 'injuries_dooring' ~ 'Dooring', 
                               variable == 'injuries_fatal' ~ 'Fatal', 
@@ -146,7 +111,7 @@ tract_traffic_crashes <- st_crop(tract_traffic_crashes, y = chi_bbox_crop) %>%
          lat = map_dbl(geometry, ~st_point_on_surface(.x)[[2]])) 
 
 # Choropleth of Bike Routes
-(pchoro <- ggplot() + 
+(pchoro <-  ggplot() + 
   geom_sf(data = st_union(tract_traffic_crashes)) +
   geom_sf(data = tract_traffic_crashes, aes(fill = injuries_total, color = injuries_total),  size = .01 ) + #
   scale_fill_gradient2(low =  "#ffffff", high = "#F77552", labels = comma, name = "Reported\nInjuries") +
@@ -179,13 +144,13 @@ tract_traffic_crashes <- st_crop(tract_traffic_crashes, y = chi_bbox_crop) %>%
 ggsave(paste0(path_wd,'/bike_choropleth.png'), pchoro, dpi = 400, height =8, width=6) #
 
 # Bar Chart Ranking Crash Areas
-tract_summary <- tract_traffic_crashes_summary %>% filter(rank <= 30) %>%
+tract_summary <- tract_traffic_crashes_summary %>% filter(rank <= 20) %>%
   arrange(desc(total))
 tract_summary_order <- unique(tract_summary$community)
 tract_summary$community <- factor(tract_summary$community, levels = rev(tract_summary_order))
 
 colorhexes <- c("#0194D3","#D1D3D4","#ffc425","#49DEA4")
-(pbar <- ggplot(data = tract_summary,
+(pbar <-  ggplot(data = tract_summary,
        aes(x = community,
            y = value,
            fill = variable), 
@@ -201,7 +166,7 @@ colorhexes <- c("#0194D3","#D1D3D4","#ffc425","#49DEA4")
   ggplot2::labs(y= "Reported Injuries", 
                 x = 'Community', 
                 fill = '',
-                title = 'Top 30 Community Areas by Reported Bike Crashes (2015-2020)',
+                title = 'Top 20 Community Areas by Reported Bike Crashes (2015-2020)',
                 caption = "Source: Chicago Data Portal") +
   ggplot2::theme(legend.position ="bottom",
                  panel.border = ggplot2::element_blank(),
