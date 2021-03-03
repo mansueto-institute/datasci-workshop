@@ -257,11 +257,11 @@ chicago_acs_community_areas <- left_join(community_areas,
 
 ggsave(plot = panel_areas, filename = paste0(path_wd,'chi_community_area.png'), device = 'png') 
 
-
 # Vignette 4 --------------------------------------------------------------
-# Download population and median household income for all tracts in US (or a subset of states)
+# Download ACS data for all tracts in US (or a subset of states)
 # Download and build county to metro crosswalk from non-machine friendly format
 # Make a tract choropleth map for one metro area
+# Make a tract choropleth map for one city within metro area
 
 # Download state codes via tidycensus' "fips_codes" data set
 state_xwalk <- as.data.frame(fips_codes) %>%
@@ -366,7 +366,6 @@ theme_maps <- theme(legend.title = element_blank(), axis.text = element_blank(),
                     plot.caption=element_text(vjust = -15, face = 'bold')) 
 
 # Metro Commuting and Economic Maps
-
 (m_p <- ggplot() +
     geom_sf(data = acs_tract_chicago_metro, aes(fill = log10(estimate), color = log10(estimate) )) +
     scale_fill_viridis(option = 'inferno', breaks= c(3,3.69897,4,4.3), labels = c("1K","5K","10K","20K") ) + 
@@ -395,7 +394,7 @@ theme_maps <- theme(legend.title = element_blank(), axis.text = element_blank(),
 (m_bwt <- ggplot() +
   geom_sf(data = acs_tract_chicago_metro, aes(fill = bike_walk_transit_share , color = bike_walk_transit_share )) +
   scale_fill_viridis(option = "plasma", labels = percent_format()) + scale_color_viridis(option = "plasma", labels = percent_format()) +
-  labs(title = "", subtitle = "Share of commuters who travel\nby bike, foot, transit", caption = '') +
+  labs(title = "", subtitle = "Share of commuters who travel\nby bike, foot, public transit", caption = '') +
     theme_minimal() + theme_maps)
 
 (m_40 <- ggplot() +
@@ -412,3 +411,56 @@ theme_maps <- theme(legend.title = element_blank(), axis.text = element_blank(),
           text = element_text(family = "Lato", size = 11) ))
 
 ggsave(plot = panel_msa, filename = paste0(path_wd,'chimsa_tract.png'), device = 'png') 
+
+# Zoom in on Chicago City
+acs_tract_chicago_city <- acs_tract_chicago_metro %>% 
+  st_transform(crs = st_crs(4326)) %>%
+  st_join(., community_areas) %>%
+  filter(!is.na(community))
+
+(m_p <- ggplot() +
+    geom_sf(data = acs_tract_chicago_city, aes(fill = log10(estimate), color = log10(estimate) )) +
+    scale_fill_viridis(option = 'inferno', breaks= c(3,3.69897,4,4.3), labels = c("1K","5K","10K","20K") ) + 
+    scale_color_viridis(option = 'inferno', breaks= c(3,3.69897,4,4.3), labels = c("1K","5K","10K","20K")) + 
+    labs(title = "", subtitle = "Population", caption = '') +
+    theme_minimal() + theme_maps )
+
+(m_i <- ggplot() +
+    geom_sf(data = acs_tract_chicago_city, aes(fill = median_household_income, color = median_household_income)) +
+    scale_fill_viridis(option = "magma", labels = dollar_format()) + scale_color_viridis(option = "magma", labels = dollar_format()) +
+    labs(title = "", subtitle = "Median household income", caption = '') +
+    theme_minimal() + theme_maps )
+
+(m_ba <- ggplot() +
+    geom_sf(data = acs_tract_chicago_city, aes(fill = bachelors_plus_share, color = bachelors_plus_share )) +
+    scale_fill_viridis(labels = percent_format()) + scale_color_viridis( labels = percent_format()) +
+    labs(title = "", subtitle = "Share of population 25+ years\nwith Bachelor's or higher", caption = '') +
+    theme_minimal() + theme_maps )
+
+(m_car <- ggplot() +
+    geom_sf(data = acs_tract_chicago_city, aes(fill = drove_alone_share, color = drove_alone_share )) +
+    scale_fill_viridis(option = "plasma", labels = percent_format()) + scale_color_viridis(option = "plasma", labels = percent_format()) +
+    labs(title = "", subtitle = "Share of commuters who\ndrove alone", caption = '') +
+    theme_minimal() + theme_maps )
+
+(m_bwt <- ggplot() +
+    geom_sf(data = acs_tract_chicago_city, aes(fill = bike_walk_transit_share , color = bike_walk_transit_share )) +
+    scale_fill_viridis(option = "plasma", labels = percent_format()) + scale_color_viridis(option = "plasma", labels = percent_format()) +
+    labs(title = "", subtitle = "Share of commuters who travel\nby bike, foot, public transit", caption = '') +
+    theme_minimal() + theme_maps)
+
+(m_40 <- ggplot() +
+    geom_sf(data = acs_tract_chicago_city, aes(fill =travel_over_40min_share, color = travel_over_40min_share )) +
+    scale_fill_viridis(option = "plasma", labels = percent_format()) + scale_color_viridis(option = "plasma", labels = percent_format()) +
+    labs(title = "", subtitle = "Share of commuters who travel\nover 40 min to work", caption = '') +
+    theme_minimal() + theme_maps)
+
+(panel_city <- m_p + m_i + m_ba +  m_car + m_bwt + m_40 +
+    plot_annotation(title = '',#subtitle = 'Social Characteristics and Commuting Patterns in Chicago MSA',
+                    caption = "U.S. Census Bureau. Analysis of 2015-2019 American Community Survey 5-year estimates.") & 
+    theme(plot.caption = element_text(hjust = 0, face= "italic"), 
+          plot.tag.position = "bottom",
+          text = element_text(family = "Lato", size = 11) ))
+
+ggsave(plot = panel_city, filename = paste0(path_wd,'chicity_tract.png'), device = 'png') 
+
