@@ -3,6 +3,7 @@
 # Date: March 2021
 # This script works through several vignettes of using the Census API, processing the data, and building choropleth maps
 # Developed in R version 4.0.4 (2021-02-15)
+# Google Slide Deck: https://docs.google.com/presentation/d/1crLM8qvvuLrAIxXrrUurge5213OlSOR7o_e425_f25o/edit?usp=sharing
 
 library(tidyverse)
 library(sf)
@@ -21,11 +22,15 @@ library(patchwork)
 # Set file path of parent directory
 path_wd <- '/Users/nm/Desktop/projects/work/mansueto/workshops/acs-data-analysis/'
 
-# Obtain Census API Key here: https://api.census.gov/data/key_signup.html
-# Run census_api_key function to add API_KEY to .Renviron
-#census_api_key('API_KEY', install = TRUE) 
+# 1. Obtain Census API Key here: https://api.census.gov/data/key_signup.html
+# 2. Run census_api_key function to add API_KEY to .Renviron
+# census_api_key('API_KEY', install = TRUE) 
+# 3. Restart RStudio
 
-# Read the .Renviron file
+# Another option is to simply run:
+# Sys.getenv("API_KEY") 
+
+# Read the .Renviron file (only necessary fi you ran census_api_key()
 readRenviron("~/.Renviron")
 
 # Function to launch a mini Shiny app to look up Census variables
