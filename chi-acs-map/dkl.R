@@ -184,6 +184,86 @@ df <- acs_tract_all_us_data %>%
                            "Indianapolis-Carmel-Anderson, IN",
                            "Milwaukee-Waukesha, WI"))
 
+# DKL
+df2 <- df %>% 
+  mutate(p_ni = tract_total / cbsa_total, # Prob of being in tract in MSA 
+         p_ni_yj = tract_estimate / cbsa_estimate, # Prob of being in tract among people in bin 
+         p_yj = cbsa_estimate / cbsa_total, # Prob of being in bin for everyone in MSA 
+         p_yj_ni = tract_estimate / tract_total) %>% # Prob of being in bin among people in tract 
+  mutate_at(vars(p_ni,p_ni_yj,p_yj,p_yj_ni), ~replace(., is.nan(.), 0)) %>%
+  mutate(dkl_log_i = log(p_yj_ni / p_yj), # share of income in tract relative to share of income in metro
+         djl_log_j = log(p_ni_yj / p_ni) # tract share of metro bin relative to share of tract in metro
+  ) %>%
+  mutate_at(vars(dkl_log_i, djl_log_j), ~replace(., is.infinite(.), 0)) %>%
+  mutate_at(vars(dkl_log_i, djl_log_j), ~replace(., is.nan(.), 0)) %>%
+  mutate(dkl_tract_j = p_yj_ni * dkl_log_i, # DKL tract component
+         dkl_bin_i = p_ni_yj * djl_log_j) %>% # DKL bin component
+  group_by(variable_group, tract_fips) %>% mutate(dkl_tract = sum(dkl_tract_j)) %>% ungroup() %>% # Sum DKL tract components
+  group_by(variable_group, cbsa_fips, variable) %>% mutate(dkl_bin = sum(dkl_bin_i )) %>% ungroup() # Sum DKL bin components
+         
+geom_tract <- get_acs(year = 2019, geography = "tract", survey = 'acs5', variables = 'B02001_001', state = '17', county = '031', geometry = TRUE) %>%
+  select(GEOID) %>% st_transform(crs = st_crs(4326)) 
+
+# Community areas
+community_areas <- sf::st_read('https://data.cityofchicago.org/api/geospatial/cauq-8yn6?method=export&format=GeoJSON') %>% 
+  st_transform(crs = st_crs(4326)) %>% 
+  st_as_sf() %>% 
+  select(community)
+geom_tract <- geom_tract %>%
+  st_join(., community_areas, left= TRUE, largest = TRUE) %>%
+  filter(!is.na(community))
+
+# Visualizations of Tracts
+p1 <- ggplot(geom_tract %>% left_join(., df2, by = c('GEOID'='tract_fips')) %>% filter(group_label == 'Race'), 
+       aes(fill = dkl_tract , color =  dkl_tract)) +
+    geom_sf() + scale_fill_viridis() + scale_color_viridis() +
+  labs(subtitle = 'Race') +
+    theme_minimal() + theme(legend.title = element_blank(), axis.text = element_blank())
+
+p2 <- ggplot(geom_tract %>% left_join(., df2, by = c('GEOID'='tract_fips')) %>% filter(group_label == 'Household income'), 
+       aes(fill = dkl_tract , color =  dkl_tract)) +
+  geom_sf() + scale_fill_viridis() + scale_color_viridis() +
+  labs(subtitle = 'Household income') +
+  theme_minimal() + theme(legend.title = element_blank(), axis.text = element_blank())
+
+p3 <- ggplot(geom_tract %>% left_join(., df2, by = c('GEOID'='tract_fips')) %>% filter(group_label == 'Education attainment'), 
+       aes(fill = dkl_tract , color =  dkl_tract)) +
+  geom_sf() + scale_fill_viridis() + scale_color_viridis() +
+  labs(subtitle =  'Education attainment') +
+  theme_minimal() + theme(legend.title = element_blank(), axis.text = element_blank())
+
+ggplot(geom_tract %>% left_join(., df2, by = c('GEOID'='tract_fips')) %>% filter(group_label == 'Age'), 
+       aes(fill = dkl_tract , color =  dkl_tract)) +
+  geom_sf() + scale_fill_viridis() + scale_color_viridis() +
+  labs(subtitle =  '') +
+  theme_minimal() + theme(legend.title = element_blank(), axis.text = element_blank())
+
+ggplot(geom_tract %>% left_join(., df2, by = c('GEOID'='tract_fips')) %>% filter(group_label == 'Occupation'), 
+       aes(fill = dkl_tract , color =  dkl_tract)) +
+  geom_sf() + scale_fill_viridis() + scale_color_viridis() +
+  labs(subtitle =  '') +
+  theme_minimal() + theme(legend.title = element_blank(), axis.text = element_blank())
+
+p4 <- p1 + p2 +p3
+p4
+
+# Bar charts
+df3 <- df2 
+lvls <- df2 %>% filter(group_label == 'Race') %>% select(label) %>% distinct() %>% pull(label)
+df3$label <- factor(df2$label, levels = lvls)
+ggplot(df3 %>% filter(group_label == 'Race', cbsa_fips == '16980') %>% select(group_label, cbsa_fips, label, dkl_bin) %>% distinct()) +
+  geom_bar(aes(x= dkl_bin, y = label), stat="identity") 
+
+lvls <- df2 %>% filter(group_label == 'Household income') %>% select(label) %>% distinct() %>% pull(label)
+df3$label <- factor(df2$label, levels = lvls)
+ggplot(df3 %>% filter(group_label == 'Household income', cbsa_fips == '16980') %>% select(group_label, cbsa_fips, label, dkl_bin) %>% distinct()) +
+  geom_bar(aes(x= dkl_bin, y = label, fill = label), stat="identity") 
+
+lvls <- df2 %>% filter(group_label ==  'Education attainment') %>% select(label) %>% distinct() %>% pull(label)
+df3$label <- factor(df2$label, levels = lvls)
+ggplot(df3 %>% filter(group_label == 'Education attainment', cbsa_fips == '16980') %>% select(group_label, cbsa_fips, label, dkl_bin) %>% distinct()) +
+  geom_bar(aes(x= dkl_bin, y = label), stat="identity") 
+
 write_csv(df, '/Users/nm/Desktop/dkl_input_data.csv')
 
 write_csv(df %>% filter(tract_fips == '17031010100'), '/Users/nm/Desktop/dkl_test.csv')
