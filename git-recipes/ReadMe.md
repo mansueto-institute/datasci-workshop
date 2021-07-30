@@ -1,6 +1,4 @@
 
-# Set up Git locally for the first time
-
 ### Real World GitHub Recipes
 
 * Git [How to](https://github.com/git-guides/install-git) and [Git Handbook](https://guides.github.com/introduction/git-handbook/)
@@ -33,10 +31,10 @@
 `git add .`  
 * Stages new and modified files only, NOT deleted files <br />
 `git add -u` 
-* tage all changes to all files within a repo subfolder <br />
+* Stage all changes to all files within a repo subfolder <br />
 `git add /home/user/Desktop/name_of_repo/repo-subfolder/` 
 * Create a commit which takes a snapshot of the staging area of will be pushed to GitHub <br />
-`git commit -m "add README to initial commit"`            
+`git commit -m "add commit"`            
 
 #### Editing and undoing commits 
 * Change directory path to the `name_of_repo` folder  <br />
@@ -66,7 +64,7 @@
 * Browse and inspect the evolution of project files  <br />
 `git log` 
 * Recover SINGLE file if you accidently did a `git reset --hard HEAD` or `git checkout HEAD`  <br />
-`git checkout path/to/file-I-want-to-bring-back.txt` 
+`git checkout path/to/file-to-bring-back.txt` 
 
 #### Pushing commits in local repo to remote GitHub repo
 * List the current remotes associated with the local repository <br />
