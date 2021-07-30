@@ -4,10 +4,7 @@
 * GitHub command line tool: https://cli.github.com/manual/
 
 #### Start a new local repo (assumes there is not currently an active remote GitHub repo)
-
-#### Start a new local repo (assumes there is not currently an active remote GitHub repo)
-
-| Command | Description |
+{ | Command | Description |
 | --- | --- |
 | `mkdir /home/user/Desktop/name_of_repo` | Make a project folder |
 | `cd /home/user/Desktop/name_of_repo` | Change directory path to the `name_of_repo` folder |
@@ -15,7 +12,7 @@
 | `touch README.md` | Create the first file in the project |
 | `open -t README.md` | Add text to the first file |
 | `git add README.md` | Git isn't aware of the file so stage |
-|<img width=200/>|<img width=500/>|
+|<img width=200/>|<img width=500/>| font-size: 8px;}
 
 #### Add, update, and delete files and folders to a commit staging area (before pushing to remote repo) 
 | Command | Description |
