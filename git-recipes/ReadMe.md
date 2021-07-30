@@ -59,6 +59,7 @@
 
 #### Contribute to an existing remote repo that you don't have cloned locally
 | Command | Description |
+| --- | --- |
 | `cd /home/user/Desktop` | Set current directory folder to clone repo |
 | `git clone git@github.com:github_account/name_of_repo.git` | Download a repository from GitHub.com to machine (clones repo, master and all of the remote tracking branches) |
 | `cd /home/user/Desktop/name_of_repo` | Change into the `name_of_repo` directory |
@@ -75,6 +76,7 @@
 
 #### Contribute to an existing remote branch on GitHub from a repo that is already local (assumes `name_of_repo` already exists on the machine and a new branch has been pushed to GitHub from someone else since the last time changes were made locally)
 | Command | Description |
+| --- | --- |
 | `cd /home/user/Desktop/name_of_repo` | Change into the `name_of_repo` directory |
 | `git status` | Check if local branch is ahead or behind on commits or if there are merge conflicts |
 | `git status -v`  | Add verbose option |
@@ -90,19 +92,22 @@
 
 #### Special cases for git pull
 | Command | Description |
+| --- | --- |
 | `git pull --rebase` | Update your local working branch with commits from the remote. Will rewrite history so any local commits occur after all new commits coming from the remote, avoiding a merge commit |
 | `git pull --force` | To force Git to overwrite your current branch to match the remote tracking branch |
 | `git pull --all` | Fetch all remotes - this is handy if you are working on a fork or in another use case with multiple remotes |
 
 #### Rebasing and merging
 | Command | Description |
+| --- | --- |
 | `git merge` | Combine changes made on two distinct branches. For example, a developer would merge when they want to combine changes from a feature branch into the main branch for deployment |
 | `git checkout local-branch` <br /> `git merge master` | Merge remote changes to master to local branch - this is a safe non-destructive operation that will not change existing branches in any way but can lead to a more complicated project history |
 | `git checkout feature` <br /> `git rebase master` | Incorporate all of the new commits in remote master to to local branch. This re-writes project history so its perfectly linear, but you can’t see when upstream changes were incorporated into the feature |
 | `git push --force` | If the rebased branch conflicts with the remote master branch and you want to override when you push |
 
 #### Using .gitignore to protect secret access tokens that you don't want to push to GitHub
-
+| Command | Description |
+| --- | --- |
 | `cd /home/user/Desktop/name_of_repo` | Change into the `name_of_repo` directory |
 | `touch .env` | Create an environment file |
 | `open -t .env` | Open the environment file and add secret tokens |
