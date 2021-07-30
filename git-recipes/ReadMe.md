@@ -4,7 +4,7 @@
 * Git [How to](https://github.com/git-guides/install-git) and [Git Handbook](https://guides.github.com/introduction/git-handbook/)
 * GitHub command line tool: https://cli.github.com/manual/
 
-### 1. Start a new local repo (assumes there is not currently an active remote GitHub repo)
+#### Start a new local repo (assumes there is not currently an active remote GitHub repo)
 * Make a project folder <br />
 `mkdir /home/user/Desktop/name_of_repo`  
 * Change directory path to the `name_of_repo` folder <br />
@@ -18,7 +18,7 @@
 * Git isn't aware of the file so stage <br />
 `git add README.md`  
 
-### 2. Add, update, and delete files and folders to a commit staging area (before pushing to remote repo) 
+#### Add, update, and delete files and folders to a commit staging area (before pushing to remote repo) 
 * Change directory path to the `name_of_repo` folder <br />
 `cd /home/user/Desktop/name_of_repo`              
 * Add a file to staging <br />
@@ -36,7 +36,7 @@
 * Create a commit which takes a snapshot of the staging area of will be pushed to GitHub <br />
 `git commit -m "add commit"`            
 
-### 3. Editing and undoing commits 
+#### Editing and undoing commits 
 * Change directory path to the `name_of_repo` folder  <br />
 `cd /home/user/Desktop/name_of_repo` 
 * Replaces the most recent commit with a new commit, this is useful when commit contains changes you want to adjust  <br />
@@ -56,7 +56,7 @@
 * If you don't want to use HEAD use the `<hash>` from last good commit. The commit `<hash>` found here `https://github.com/<account>/<repo>/commit/<hash>`  <br />
 `git reset --hard <hash>` 
 
-### 4. Recovering lost changes
+#### Recovering lost changes
 * Change directory path to the `name_of_repo` folder  <br />
 `cd /home/user/Desktop/name_of_repo` 
 * Produce log of every commit that HEAD has pointed to if you unintentionally lose commits, you can find and access (use `git checkout` to bring back lost files)  <br />
@@ -66,7 +66,7 @@
 * Recover SINGLE file if you accidently did a `git reset --hard HEAD` or `git checkout HEAD`  <br />
 `git checkout path/to/file-to-bring-back.txt` 
 
-### 5. Pushing commits in local repo to remote GitHub repo
+#### Pushing commits in local repo to remote GitHub repo
 * List the current remotes associated with the local repository <br />
 `git remote -v` 
 * Add a remote repo to GitHub for a newly initialized repository (`origin` is the default name for the URL that the remote repository) <br />
@@ -76,7 +76,7 @@
 * Uploads all local branch commits to the remote (`upstream` refers to the remote repository, `origin` refers to repo URL, and `master` refers to the checked out branch) <br />
 `git push --set-upstream origin master` 
 
-### 6. Contribute to an existing remote repo that you don't have cloned locally
+#### Contribute to an existing remote repo that you don't have cloned locally
 * Set current directory folder to clone repo <br />
 `cd /home/user/Desktop` 
 * Download a repository from GitHub.com to machine (clones repo, master and all of the remote tracking branches) <br />
@@ -104,7 +104,7 @@
 * Push the changes to the remote branch <br />
 `git push -u origin new-branch` 
 
-### 7. Contribute to an existing remote branch on GitHub from a repo that is already local (assumes `name_of_repo` already exists on the machine and a new branch has been pushed to GitHub from someone else since the last time changes were made locally)
+#### Contribute to an existing remote branch on GitHub from a repo that is already local (assumes `name_of_repo` already exists on the machine and a new branch has been pushed to GitHub from someone else since the last time changes were made locally)
 * Change into the `name_of_repo` directory <br />
 `cd /home/user/Desktop/name_of_repo` 
 * Check if local branch is ahead or behind on commits or if there are merge conflicts <br />
@@ -121,16 +121,16 @@
 `git pull` 
 * Change into the existing branch called `other-branch` <br />
 `git checkout other-branch` 
-Make changes, for example, edit `filename.txt` using the text editor <br />
+* Make changes, for example, edit `filename.txt` using the text editor <br />
 `open -t filename.txt`
-Stage the changed file  <br />
+* Stage the changed file  <br />
 `git add filename.txt`
-Take a snapshot of the staging area <br />
+* Take a snapshot of the staging area <br />
 `git commit -m "edit file1"` 
-Push local changes to github remote <br />
+* Push local changes to github remote <br />
 `git push` 
 
-### 8. Special cases for git pull
+#### Special cases for git pull
 * Update your local working branch with commits from the remote. Will rewrite history so any local commits occur after all new commits coming from the remote, avoiding a merge commit <br />
 `git pull --rebase` 
 * To force Git to overwrite your current branch to match the remote tracking branch  <br />
@@ -138,7 +138,7 @@ Push local changes to github remote <br />
 * Fetch all remotes - this is handy if you are working on a fork or in another use case with multiple remotes <br />
 `git pull --all` 
 
-### 9. Rebasing and merging
+#### Rebasing and merging
 * Combine changes made on two distinct branches. For example, a developer would merge when they want to combine changes from a feature branch into the main branch for deployment <br />
 `git merge` 
 * Merge remote changes to master to local branch - this is a safe non-destructive operation that will not change existing branches in any way but can lead to a more complicated project history <br />
@@ -148,7 +148,7 @@ Push local changes to github remote <br />
 * If the rebased branch conflicts with the remote master branch and you want to override when you push <br />
 `git push --force` 
 
-### 10. Using .gitignore to protect secret access tokens that you don't want to push to GitHub
+#### Using .gitignore to protect secret access tokens that you don't want to push to GitHub
 * Change into the `name_of_repo` directory <br />
 `cd /home/user/Desktop/name_of_repo` 
 * Create an environment file <br />
@@ -162,7 +162,7 @@ Push local changes to github remote <br />
 * Remove .env from Git environment <br />
 `git rm --cached .env` <br /> `git rm --cached .env.*` 
 
-### 11. Other Tips
+#### Other Tips
 
 #### Special clone operations
 * Clone only a single branch <br />
