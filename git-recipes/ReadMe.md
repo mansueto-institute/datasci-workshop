@@ -25,6 +25,7 @@
 | `git add -u` | Stages new and modified files only, NOT deleted files |
 | `git add /home/user/Desktop/name_of_repo/repo-subfolder/` | Stage all changes to all files within a repo subfolder |
 | `git commit -m "add README to initial commit"` | Create a commit which takes a snapshot of the staging area of will be pushed to GitHub |
+|<img width=200/>|<img width=500/>| 
 
 #### Editing and undoing commits 
 | Command | Description |
@@ -38,6 +39,7 @@
 | `git reset --mixed HEAD` | Undo last commit, undo add / unstage changes (changes are left in working tree) |
 | `git reset --hard HEAD` | Undo last commit, undo add / unstage changes, delete any changes you made on the codes (this is the same as `git checkout HEAD`) |
 | `git reset --hard <hash>` | If you don't want to use HEAD use the `<hash>` from last good commit. The commit `<hash>` found here `https://github.com/<account>/<repo>/commit/<hash>` |
+|<img width=200/>|<img width=500/>| 
 
 #### Recovering lost changes
 | Command | Description |
@@ -48,6 +50,7 @@
 | `git checkout path/to/file-I-want-to-bring-back.txt` | Recover SINGLE file if you accidently did a `git reset --hard HEAD` or `git checkout HEAD` |
 | `git ls-files -z -d | xargs -0 git checkout --` | Recover all UNSTAGED deletions without specifying each single path (WARNING be sure this is what you want) |
 | `git status | grep 'deleted:' | awk '{print $2}' | xargs git checkout --` | Recover all STAGED deletions without specifying each single path (WARNING be sure this is what you want) |
+|<img width=200/>|<img width=500/>| 
 
 #### Pushing commits in local repo to remote GitHub repo
 | Command | Description |
@@ -55,6 +58,7 @@
 | `git remote add origin https://github.com/<useraccount>/<name_of_repo>.git` | Add a remote repo to GitHub for a newly initialized repository (`origin` is the default name for the URL that the remote repository) |
 | `git push -u origin master` | When pushing a branch for the first time, push will configure the relationship between the remote and your local repository so that you can use git pull and git push with no additional options in the future. In this case `origin` refers to the repo URL and `master` is the checked out branch |
 | `git push --set-upstream origin master` | Uploads all local branch commits to the remote (`upstream` refers to the remote repository, `origin` refers to repo URL, and `master` refers to the checked out branch) |
+|<img width=200/>|<img width=500/>| 
 
 #### Contribute to an existing remote repo that you don't have cloned locally
 | Command | Description |
@@ -72,6 +76,7 @@
 | `git commit -m "descriptive message"` | Commit changed files (acts as a snapshot of the staging area recorded permanently) |
 | `git push --set-upstream origin new-branch` | Push committed changes to github so that all local branch commits are uploaded to the remote | 
 | `git push -u origin new-branch` | Push the changes to the remote branch |
+|<img width=200/>|<img width=500/>| 
 
 #### Contribute to an existing remote branch on GitHub from a repo that is already local (assumes `name_of_repo` already exists on the machine and a new branch has been pushed to GitHub from someone else since the last time changes were made locally)
 | Command | Description |
@@ -88,6 +93,7 @@
 | `git add filename.txt` | Stage the changed file |
 | `git commit -m "edit file1"` | Take a snapshot of the staging area |
 | `git push` | Push local changes to github remote |
+|<img width=200/>|<img width=500/>| 
 
 #### Special cases for git pull
 | Command | Description |
@@ -95,6 +101,7 @@
 | `git pull --rebase` | Update your local working branch with commits from the remote. Will rewrite history so any local commits occur after all new commits coming from the remote, avoiding a merge commit |
 | `git pull --force` | To force Git to overwrite your current branch to match the remote tracking branch |
 | `git pull --all` | Fetch all remotes - this is handy if you are working on a fork or in another use case with multiple remotes |
+|<img width=200/>|<img width=500/>| 
 
 #### Rebasing and merging
 | Command | Description |
@@ -103,6 +110,7 @@
 | `git checkout local-branch` <br /> `git merge master` | Merge remote changes to master to local branch - this is a safe non-destructive operation that will not change existing branches in any way but can lead to a more complicated project history |
 | `git checkout feature` <br /> `git rebase master` | Incorporate all of the new commits in remote master to to local branch. This re-writes project history so its perfectly linear, but you can’t see when upstream changes were incorporated into the feature |
 | `git push --force` | If the rebased branch conflicts with the remote master branch and you want to override when you push |
+|<img width=200/>|<img width=500/>| 
 
 #### Using .gitignore to protect secret access tokens that you don't want to push to GitHub
 | Command | Description |
@@ -113,3 +121,4 @@
 | `touch .gitignore` | Create a .gitignore |
 | `echo '.env' >> .gitignore` <br /> `echo '.vscode' >> .gitignore`  <br /> `echo '!.gitignore' >> .gitignore` | Add .env to the .gitignore (so secrets stay off GitHub) |
 | `git rm --cached .env` <br /> `git rm --cached .env.*` | Remove .env from Git environment |
+|<img width=200/>|<img width=500/>| 
