@@ -15,7 +15,7 @@
 
 #### Add, update, and delete files and folders to a commit staging area (before pushing to remote repo) 
 | Command | Description |
-| --- | --- |
+| ------------------------------------------------ | ------------------------------------------------- |
 | `cd /home/user/Desktop/name_of_repo` | Change directory path to the `name_of_repo` folder |
 | `git add filename.txt` | Add a file to staging |
 | `rm filename.txt` <br />`git add` | Stage deleted files |
