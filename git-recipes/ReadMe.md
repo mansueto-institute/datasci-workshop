@@ -2,7 +2,7 @@
 ## Real World GitHub Recipes
 
 * Git [How to](https://github.com/git-guides/install-git) and [Git Handbook](https://guides.github.com/introduction/git-handbook/)
-* GitHub command line tool: https://cli.github.com/manual/
+* GitHub [command line tool](https://cli.github.com/manual/)
 
 #### Start a new local repo (assumes there is not currently an active remote GitHub repo)
 * Make a project folder <br />
