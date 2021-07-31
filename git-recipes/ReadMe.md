@@ -14,7 +14,7 @@
 - [Contribute to a remote GitHub repo (not cloned locally)](#contribute-to-an-existing-remote-github-repo-not-cloned-locally)
 - [Contribute to a remote GitHub repo (cloned locally)](#contribute-to-an-existing-remote-branch-from-a-github-repo-cloned-locally)
 - [Rebasing and merging different branches](#rebasing-and-merging-different-branches)
-- [Using .gitignore](#prevent-secret-access-tokens-from-being-pushed-to-remote-github-repo)
+- [Secret access token privacy](#prevent-secret-access-tokens-from-being-pushed-to-remote-github-repo)
 - [Setting up Git on Midway HPC](#setting-up-git-for-the-first-time-on-midway-hpc)
 ---
 
