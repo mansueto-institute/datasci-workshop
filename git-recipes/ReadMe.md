@@ -9,7 +9,7 @@
 `mkdir /home/user/Desktop/name_of_repo`  
 * Change directory path to the `name_of_repo` folder <br />
 `cd /home/user/Desktop/name_of_repo`  
-* Transform the current directory into a Git repository. Creates a hidden directory called `.git` storing all the objects and refs that Git uses to version control <br />
+* Initialize the current directory as a Git repository (creates a hidden directory called `.git` storing all the objects and refs that Git uses to version control) <br />
 `git init name_of_repo`  
 * Create the first file in the project <br />
 `touch README.md`  
@@ -51,9 +51,9 @@
 `git reset --soft HEAD` 
 * Undo last commit, undo add / unstage changes (changes are left in working tree)  <br />
 `git reset --mixed HEAD`
-* Undo last commit, undo add / unstage changes, delete any changes you made on the codes (this is the same as `git checkout HEAD`)   <br />
+* Undo last commit, undo add / unstage changes, delete any changes to code (this is the same as `git checkout HEAD`)   <br />
 `git reset --hard HEAD` 
-* If you don't want to use HEAD use the `<hash>` from last good commit. The commit `<hash>` found here `https://github.com/<account>/<repo>/commit/<hash>`  <br />
+* If you don't want to use `HEAD` use the `<hash>` from last good commit (the `<hash>` is found here `https://github.com/<account>/<repo>/commit/<hash>`)  <br />
 `git reset --hard <hash>` 
 
 #### Recovering lost changes
@@ -65,6 +65,10 @@
 `git log` 
 * Recover SINGLE file if you accidently did a `git reset --hard HEAD` or `git checkout HEAD`  <br />
 `git checkout path/to/file-to-bring-back.txt` 
+* Recover all UNSTAGED deletions without specifying each single path (WARNING be sure this is what you want)  
+`git ls-files -z -d | xargs -0 git checkout --` | 
+* Recover all STAGED deletions without specifying each single path (WARNING be sure this is what you want) 
+`git status | grep 'deleted:' | awk '{print $2}' | xargs git checkout --` 
 
 #### Pushing commits in local repo to remote GitHub repo
 * List the current remotes associated with the local repository <br />
@@ -104,7 +108,7 @@
 * Push the changes to the remote branch <br />
 `git push -u origin new-branch` 
 
-#### Contribute to an existing remote branch on GitHub from a repo that is already local (assumes `name_of_repo` already exists on the machine and a new branch has been pushed to GitHub from someone else since the last time changes were made locally)
+#### Contribute to an existing remote branch from a repo that is already local
 * Change into the `name_of_repo` directory <br />
 `cd /home/user/Desktop/name_of_repo` 
 * Check if local branch is ahead or behind on commits or if there are merge conflicts <br />
@@ -126,7 +130,7 @@
 * Stage the changed file  <br />
 `git add filename.txt`
 * Take a snapshot of the staging area <br />
-`git commit -m "edit file1"` 
+`git commit -m "edited filename.txt"` 
 * Push local changes to github remote <br />
 `git push` 
 
@@ -162,8 +166,6 @@
 * Remove .env from Git environment <br />
 `git rm --cached .env` <br /> `git rm --cached .env.*` 
 
-#### Other Tips
-
 #### Special clone operations
 * Clone only a single branch <br />
 `git clone git@github.com:github_account/name_of_repo.git --branch name_of_branch --single-branch`
@@ -178,8 +180,3 @@
 * Go to github.com, click 'Settings' > 'SSH and GPG keys' > 'New SSH key' and paste in contents of `~/.ssh/id_rsa.pub` and save.
 * Clone private repo to Midway: `git clone git@github.com:github_account/name_of_repo.git`
 
-#### Hard recovery 
-* Recover all UNSTAGED deletions without specifying each single path (WARNING be sure this is what you want)  
-`git ls-files -z -d | xargs -0 git checkout --` | 
-* Recover all STAGED deletions without specifying each single path (WARNING be sure this is what you want) 
-`git status | grep 'deleted:' | awk '{print $2}' | xargs git checkout --` 
