@@ -4,7 +4,7 @@
 * Git [How to](https://github.com/git-guides/install-git) and [Git Handbook](https://guides.github.com/introduction/git-handbook/)
 * GitHub [command line tool](https://cli.github.com/manual/)
 
-#### Start a new local repo when there is not currently an active remote repository
+#### Start a new local repo when there is not currently a GitHub remote repo
 * Make a project folder <br />
 `mkdir /home/user/Desktop/name_of_repo`  
 * Change directory path to the `name_of_repo` folder <br />
@@ -18,7 +18,7 @@
 * Git isn't aware of the file so stage <br />
 `git add README.md`  
 
-#### Add, update, and delete files and folders to a commit staging area (before pushing to remote repo) 
+#### Add, update, and delete files and folders to a commit staging area (before pushing to remote  GitHub repo) 
 * Change directory path to the `name_of_repo` folder <br />
 `cd /home/user/Desktop/name_of_repo`              
 * Add a file to staging <br />
@@ -36,7 +36,7 @@
 * Create a commit which takes a snapshot of the staging area of will be pushed to GitHub <br />
 `git commit -m "add commit"`            
 
-#### Editing and undoing commits
+#### Editing and undoing commits in local repo
 * Change directory path to the `name_of_repo` folder  <br />
 `cd /home/user/Desktop/name_of_repo` 
 * Replaces the most recent commit with a new commit, this is useful when commit contains changes you want to adjust  <br />
@@ -56,7 +56,7 @@
 * Run a hard rests from the last good commit `<hash>` (the `<hash>` is found here `https://github.com/<account>/<repo>/commit/<hash>`)  <br />
 `git reset --hard <hash>` 
 
-#### Recovering lost changes
+#### Recovering lost changes in local repo
 * Change directory path to the `name_of_repo` folder  <br />
 `cd /home/user/Desktop/name_of_repo` 
 * Produce log of every commit that HEAD has pointed to if you unintentionally lose commits, you can find and access (use `git checkout` to bring back lost files)  <br />
@@ -80,7 +80,7 @@
 * Uploads all local branch commits to the remote (`upstream` refers to the remote repository, `origin` refers to repo URL, and `master` refers to the checked out branch) <br />
 `git push --set-upstream origin master` 
 
-#### Contribute to an existing remote repo that you don't have cloned locally
+#### Contribute to an existing remote GitHub repo that you don't have cloned locally
 * Set current directory folder to clone repo <br />
 `cd /home/user/Desktop` 
 * Download a repository from GitHub.com to machine (clones repo, master and all of the remote tracking branches) <br />
@@ -108,7 +108,7 @@
 * Push the changes to the remote branch <br />
 `git push -u origin new-branch` 
 
-#### Contribute to an existing remote branch from a repo that is already local
+#### Contribute to an existing remote branch from a GitHub repo that is cloned locally
 * Change into the `name_of_repo` directory <br />
 `cd /home/user/Desktop/name_of_repo` 
 * Check if local branch is ahead or behind on commits or if there are merge conflicts <br />
@@ -142,17 +142,17 @@
 * Fetch all remotes - this is handy if you are working on a fork or in another use case with multiple remotes <br />
 `git pull --all` 
 
-#### Rebasing and merging
+#### Rebasing and merging different branches
 * Combine changes made on two distinct branches. For example, a developer would merge when they want to combine changes from a feature branch into the main branch for deployment <br />
 `git merge` 
 * Merge remote changes to master to local branch - this is a safe non-destructive operation that will not change existing branches in any way but can lead to a more complicated project history <br />
 `git checkout local-branch` <br /> `git merge master` 
 * Incorporate all of the new commits in remote master to to local branch. This re-writes project history so its perfectly linear, but you can’t see when upstream changes were incorporated into the feature <br />
 `git checkout feature` <br /> `git rebase master` 
-* If the rebased branch conflicts with the remote master branch and you want to override when you push <br />
+* Overide and push rebased branch that conflicts with the remote master branch <br />
 `git push --force` 
 
-#### Using .gitignore to protect secret access tokens that you don't want to push to GitHub
+#### Prevent secret access tokens from being pushed to remote GitHub repo
 * Change into the `name_of_repo` directory <br />
 `cd /home/user/Desktop/name_of_repo` 
 * Create an environment file <br />
