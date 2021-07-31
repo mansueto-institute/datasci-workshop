@@ -4,6 +4,20 @@
 * Git [How to](https://github.com/git-guides/install-git) and [Git Handbook](https://guides.github.com/introduction/git-handbook/)
 * GitHub [command line tool](https://cli.github.com/manual/)
 
+---
+### Table of Contents
+- [Create a new local repo](#start-a-new-local-repo-when-there-is-not-currently-a-github-remote-repo)
+- [Add update and delete files](#add-update-and-delete-files-and-folders-to-a-commit-staging-area)
+- [Editing and undoing commits](#editing-and-undoing-commits-in-local-repo)
+- [Recovering lost changes](#recovering-lost-changes-in-local-repo)
+- [Pushing commits](#pushing-commits-in-local-repo-to-remote-github-repo)
+- [Contribute to a remote GitHub repo (not cloned locally)](#contribute-to-an-existing-remote-github-repo-not-cloned-locally)
+- [Contribute to a remote GitHub repo (cloned locally)](#contribute-to-an-existing-remote-branch-from-a-github-repo-cloned-locally)
+- [Rebasing and merging different branches](#rebasing-and-merging-different-branches)
+- [Using .gitignore](#prevent-secret-access-tokens-from-being-pushed-to-remote-github-repo)
+- [Setting up Git on Midway HPC](#setting-up-git-for-the-first-time-on-midway-hpc)
+---
+
 #### Start a new local repo when there is not currently a GitHub remote repo
 * Make a project folder <br />
 `mkdir /home/user/Desktop/name_of_repo`  
@@ -18,7 +32,7 @@
 * Git isn't aware of the file so stage <br />
 `git add README.md`  
 
-#### Add, update, and delete files and folders to a commit staging area (before pushing to remote  GitHub repo) 
+#### Add update and delete files and folders to a commit staging area
 * Change directory path to the `name_of_repo` folder <br />
 `cd /home/user/Desktop/name_of_repo`              
 * Add a file to staging <br />
@@ -80,7 +94,7 @@
 * Uploads all local branch commits to the remote (`upstream` refers to the remote repository, `origin` refers to repo URL, and `master` refers to the checked out branch) <br />
 `git push --set-upstream origin master` 
 
-#### Contribute to an existing remote GitHub repo that you don't have cloned locally
+#### Contribute to an existing remote GitHub repo not cloned locally
 * Set current directory folder to clone repo <br />
 `cd /home/user/Desktop` 
 * Download a repository from GitHub.com to machine (clones repo, master and all of the remote tracking branches) <br />
@@ -108,7 +122,7 @@
 * Push the changes to the remote branch <br />
 `git push -u origin new-branch` 
 
-#### Contribute to an existing remote branch from a GitHub repo that is cloned locally
+#### Contribute to an existing remote branch from a GitHub repo cloned locally
 * Change into the `name_of_repo` directory <br />
 `cd /home/user/Desktop/name_of_repo` 
 * Check if local branch is ahead or behind on commits or if there are merge conflicts <br />
@@ -133,14 +147,6 @@
 `git commit -m "edited filename.txt"` 
 * Push local changes to github remote <br />
 `git push` 
-
-#### Special cases for git pull
-* Update your local working branch with commits from the remote. Will rewrite history so any local commits occur after all new commits coming from the remote, avoiding a merge commit <br />
-`git pull --rebase` 
-* To force Git to overwrite your current branch to match the remote tracking branch  <br />
-`git pull --force` 
-* Fetch all remotes - this is handy if you are working on a fork or in another use case with multiple remotes <br />
-`git pull --all` 
 
 #### Rebasing and merging different branches
 * Combine changes made on two distinct branches. For example, a developer would merge when they want to combine changes from a feature branch into the main branch for deployment <br />
@@ -171,6 +177,14 @@
 `git clone git@github.com:github_account/name_of_repo.git --branch name_of_branch --single-branch`
 * Populate the working directory with all of the files present in the root directory <br />
 `git clone git@github.com:github_account/name_of_repo.git --branch name_of_branch --sparse`
+
+#### Special cases for git pull
+* Update your local working branch with commits from the remote. Will rewrite history so any local commits occur after all new commits coming from the remote, avoiding a merge commit <br />
+`git pull --rebase` 
+* To force Git to overwrite your current branch to match the remote tracking branch  <br />
+`git pull --force` 
+* Fetch all remotes - this is handy if you are working on a fork or in another use case with multiple remotes <br />
+`git pull --all` 
 
 #### Setting up Git for the first time on Midway HPC
 * SSH into Midway `ssh <cnetid>@midway2.rcc.uchicago.edu`
