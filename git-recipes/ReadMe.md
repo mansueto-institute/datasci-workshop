@@ -123,7 +123,7 @@
 `git commit -m "descriptive message"` 
 * Push committed changes to github so that all local branch commits are uploaded to the remote <br />
 `git push --set-upstream origin new-branch` 
-* Push the changes to the remote branch <br />
+* Push committed changes changes to the remote branch after first time <br />
 `git push -u origin new-branch` 
 
 #### Contribute to an existing remote branch from a GitHub repo cloned locally
@@ -176,13 +176,13 @@
 * Remove .env from Git environment <br />
 `git rm --cached .env` <br /> `git rm --cached .env.*` 
 
-#### Special clone operations
+#### Special `git clone` operations
 * Clone only a single branch <br />
 `git clone git@github.com:github_account/name_of_repo.git --branch name_of_branch --single-branch`
 * Populate the working directory with all of the files present in the root directory <br />
 `git clone git@github.com:github_account/name_of_repo.git --branch name_of_branch --sparse`
 
-#### Special cases for git pull
+#### Special `git pull` operations
 * Update your local working branch with commits from the remote. Will rewrite history so any local commits occur after all new commits coming from the remote, avoiding a merge commit <br />
 `git pull --rebase` 
 * To force Git to overwrite your current branch to match the remote tracking branch  <br />
