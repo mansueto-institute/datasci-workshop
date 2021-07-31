@@ -4,7 +4,7 @@
 * Git [How to](https://github.com/git-guides/install-git) and [Git Handbook](https://guides.github.com/introduction/git-handbook/)
 * GitHub [command line tool](https://cli.github.com/manual/)
 
-#### Start a new local repo (assumes there is not currently an active remote GitHub repo)
+#### Start a new local repo when there is not currently an active remote repository
 * Make a project folder <br />
 `mkdir /home/user/Desktop/name_of_repo`  
 * Change directory path to the `name_of_repo` folder <br />
@@ -36,7 +36,7 @@
 * Create a commit which takes a snapshot of the staging area of will be pushed to GitHub <br />
 `git commit -m "add commit"`            
 
-#### Editing and undoing commits 
+#### Editing and undoing commits
 * Change directory path to the `name_of_repo` folder  <br />
 `cd /home/user/Desktop/name_of_repo` 
 * Replaces the most recent commit with a new commit, this is useful when commit contains changes you want to adjust  <br />
@@ -53,7 +53,7 @@
 `git reset --mixed HEAD`
 * Undo last commit, undo add / unstage changes, delete any changes to code (this is the same as `git checkout HEAD`)   <br />
 `git reset --hard HEAD` 
-* If you don't want to use `HEAD` use the `<hash>` from last good commit (the `<hash>` is found here `https://github.com/<account>/<repo>/commit/<hash>`)  <br />
+* Run a hard rests from the last good commit `<hash>` (the `<hash>` is found here `https://github.com/<account>/<repo>/commit/<hash>`)  <br />
 `git reset --hard <hash>` 
 
 #### Recovering lost changes
