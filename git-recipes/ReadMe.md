@@ -1,15 +1,15 @@
 
 ## Real World GitHub Recipes
 
-* Git [How to](https://github.com/git-guides/install-git) and [Git Handbook](https://guides.github.com/introduction/git-handbook/)
-* GitHub [command line tool](https://cli.github.com/manual/)
+* Git [How to Guide](https://github.com/git-guides/install-git) and [Git Handbook](https://guides.github.com/introduction/git-handbook/)
+* GitHub [CLI tool](https://cli.github.com/manual/) to perform GUI operations from command line
 
 ---
 ### Table of Contents
 - [Create a new local repo](#start-a-new-local-repo-when-there-is-not-currently-a-github-remote-repo)
 - [Committing changes and adding, updating, deleting files](#committing-changes-to-staging)
 - [Editing and undoing commits](#editing-and-undoing-commits-in-local-repo)
-- [Recovering lost changes](#recovering-lost-changes-in-local-repo)
+- [Code recovery](#recovering-code-due-to-accidental-deletions)
 - [Pushing commits](#pushing-commits-in-local-repo-to-remote-github-repo)
 - [Contribute to a remote GitHub repo (not cloned locally)](#contribute-to-an-existing-remote-github-repo-not-cloned-locally)
 - [Contribute to a remote GitHub repo (cloned locally)](#contribute-to-an-existing-remote-branch-from-a-github-repo-cloned-locally)
@@ -35,13 +35,13 @@
 #### Committing changes to staging
 * Change directory path to the `name_of_repo` folder <br />
 `cd /home/user/Desktop/name_of_repo`              
-* Add a file to staging <br />
+* Stage one file that was added or updated <br />
 `git add filename.txt`
 * Stage deleted files <br />
 `rm filename.txt` <br />`git add`
-* Stage everything (all new, modified, and deleted files, including files in the current directory and in higher directories)<br />
+* Stage all changes (all new, modified, and deleted files, including files in the current directory and in higher directories)<br />
 `git add -A` 
-* Stage the entire current directory recursively without higher directories <br />
+* Stage changes in the current directory (while excluding higher directories) <br />
 `git add .`  
 * Stages new and modified files only, NOT deleted files <br />
 `git add -u` 
@@ -70,7 +70,7 @@
 * Run a hard rests from the last good commit `<hash>` (the `<hash>` is found here `https://github.com/<account>/<repo>/commit/<hash>`)  <br />
 `git reset --hard <hash>` 
 
-#### Recovering lost changes in local repo
+#### Recovering code due to accidental deletions
 * Change directory path to the `name_of_repo` folder  <br />
 `cd /home/user/Desktop/name_of_repo` 
 * Produce log of every commit that HEAD has pointed to if you unintentionally lose commits, you can find and access (use `git checkout` to bring back lost files)  <br />
@@ -78,10 +78,14 @@
 * Browse and inspect the evolution of project files  <br />
 `git log` 
 * Recover SINGLE file if you accidently did a `git reset --hard HEAD` or `git checkout HEAD`  <br />
-`git checkout path/to/file-to-bring-back.txt` 
-* Recover all UNSTAGED deletions without specifying each single path (WARNING be sure this is what you want)  
-`git ls-files -z -d | xargs -0 git checkout --` | 
-* Recover all STAGED deletions without specifying each single path (WARNING be sure this is what you want) 
+`git checkout /home/user/Desktop/name_of_repo/file-to-bring-back.txt` 
+* Restore all deleted files in a folder <br />
+`git ls-files -d | xargs git checkout --`  
+* Recover all unstaged deletions at once without specifying each single path <br />
+`git ls-files -z -d | xargs -0 git checkout --` <br />
+`git ls-files -d | sed -e "s/\(.*\)/'\1'/" | xargs git checkout --`
+* Recover all staged deletions without specifying each single path <br />
+`git status --long | grep 'deleted:' | awk '{print $2}' | xargs git reset HEAD --`
 `git status | grep 'deleted:' | awk '{print $2}' | xargs git checkout --` 
 
 #### Pushing commits in local repo to remote GitHub repo
