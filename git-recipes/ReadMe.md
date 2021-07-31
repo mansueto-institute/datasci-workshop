@@ -57,7 +57,7 @@
 `git commit --amend -m "descriptive commit message"` 
 * Safest way to undo commit (looks at the changes introduced by a commit, then applies the inverse of those changes in a new commit)  <br />
 `git revert` 
-* Restore a file to the way it was on the previous commit. Git will assume you want to checkout HEAD so use `git diff` to confirm  <br />
+* Restore a file to the way it was on the previous commit - Git will assume you want to checkout HEAD so use `git diff` to confirm  <br />
 `git checkout -- filename.txt` 
 * Restore a specific commit and file. Find the commit `<hash>` like this: `https://github.com/<account>/<repo>/commit/<hash>`  <br />
 `git checkout <hash> -- filename.txt` 
@@ -73,18 +73,20 @@
 #### Recovering code due to accidental deletions
 * Change directory path to the `name_of_repo` folder  <br />
 `cd /home/user/Desktop/name_of_repo` 
-* Produce log of every commit that HEAD has pointed to if you unintentionally lose commits, you can find and access (use `git checkout` to bring back lost files)  <br />
+* Check the currently checked out branch or commit called `HEAD`  <br />
+`cat .git/HEAD`
+* Produce log of every commit that `HEAD` has pointed to if you unintentionally lose commits (use `git checkout` to bring back lost files) <br />
 `git reflog`  
 * Browse and inspect the evolution of project files  <br />
 `git log` 
-* Recover SINGLE file if you accidently did a `git reset --hard HEAD` or `git checkout HEAD`  <br />
+* Recover single file if you accidently did a `git reset --hard HEAD` or `git checkout HEAD`  <br />
 `git checkout /home/user/Desktop/name_of_repo/file-to-bring-back.txt` 
 * Restore all deleted files in a folder <br />
 `git ls-files -d | xargs git checkout --`  
-* Recover all unstaged deletions at once without specifying each single path <br />
+* Recover all unstaged deletions at once without specifying each single path (experimental) <br />
 `git ls-files -z -d | xargs -0 git checkout --` <br />
 `git ls-files -d | sed -e "s/\(.*\)/'\1'/" | xargs git checkout --`
-* Recover all staged deletions without specifying each single path <br />
+* Recover all staged deletions without specifying each single path  (experimental) <br />
 `git status --long | grep 'deleted:' | awk '{print $2}' | xargs git reset HEAD --`
 `git status | grep 'deleted:' | awk '{print $2}' | xargs git checkout --` 
 
@@ -93,7 +95,7 @@
 `git remote -v` 
 * Add a remote repo to GitHub for a newly initialized repository (`origin` is the default name for the URL that the remote repository) <br />
 `git remote add origin https://github.com/<useraccount>/<name_of_repo>.git` 
-* When pushing a branch for the first time, push will configure the relationship between the remote and your local repository so that you can use git pull and git push with no additional options in the future. In this case `origin` refers to the repo URL and `master` is the checked out branch <br />
+* Push and configure the relationship between the remote and your local repository so that you can use git pull and git push that refer to `origin` (the repo URL) and `master` (checked out branch) <br />
 `git push -u origin master` 
 * Uploads all local branch commits to the remote (`upstream` refers to the remote repository, `origin` refers to repo URL, and `master` refers to the checked out branch) <br />
 `git push --set-upstream origin master` 
