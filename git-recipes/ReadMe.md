@@ -59,7 +59,7 @@
 `git revert` 
 * Restore a file to the way it was on the previous commit - Git will assume you want to checkout HEAD so use `git diff` to confirm  <br />
 `git checkout -- filename.txt` 
-* Restore a specific commit and file. Find the commit `<hash>` like this: `https://github.com/<account>/<repo>/commit/<hash>`  <br />
+* Restore a specific commit and file - find the commit `<hash>` like this: `https://github.com/<account>/<repo>/commit/<hash>`  <br />
 `git checkout <hash> -- filename.txt` 
 * Undo last commit (doesn't undo add so changes are left staged)  <br />
 `git reset --soft HEAD` 
@@ -109,7 +109,7 @@
 `cd /home/user/Desktop/name_of_repo` 
 * Review all local working branches <br />
 `git branch --all` 
-* Show what branch you're on, what files are in the working or staging directory <br />
+* Show checked out branch and what files are in the working or staging directory <br />
 `git status` 
 * Create a new branch to store any new changes <br />
 `git branch new-branch` 
@@ -155,11 +155,11 @@
 `git push` 
 
 #### Rebasing and merging different branches
-* Combine changes made on two distinct branches. For example, a developer would merge when they want to combine changes from a feature branch into the main branch for deployment <br />
+* Combine changes made on two distinct branches - merge to combine changes from a feature branch into the main branch for deployment <br />
 `git merge` 
 * Merge remote changes to master to local branch - this is a safe non-destructive operation that will not change existing branches in any way but can lead to a more complicated project history <br />
 `git checkout local-branch` <br /> `git merge master` 
-* Incorporate all of the new commits in remote master to to local branch. This re-writes project history so its perfectly linear, but you can’t see when upstream changes were incorporated into the feature <br />
+* Incorporate all of the new commits in remote master to to local branch - this re-writes project history so its perfectly linear <br />
 `git checkout feature` <br /> `git rebase master` 
 * Overide and push rebased branch that conflicts with the remote master branch <br />
 `git push --force` 
@@ -185,7 +185,7 @@
 `git clone git@github.com:github_account/name_of_repo.git --branch name_of_branch --sparse`
 
 #### Special `git pull` operations
-* Update your local working branch with commits from the remote. Will rewrite history so any local commits occur after all new commits coming from the remote, avoiding a merge commit <br />
+* Update your local working branch with commits from the remote - will rewrite history so any local commits occur after all new commits coming from the remote, avoiding a merge commit <br />
 `git pull --rebase` 
 * To force Git to overwrite your current branch to match the remote tracking branch  <br />
 `git pull --force` 
