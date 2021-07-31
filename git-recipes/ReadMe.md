@@ -7,7 +7,7 @@
 ---
 ### Table of Contents
 - [Create a new local repo](#start-a-new-local-repo-when-there-is-not-currently-a-github-remote-repo)
-- [Add update delete files](#committing-changes)
+- [Committing changes and adding, updating, deleting files](#committing-changes-to-staging)
 - [Editing and undoing commits](#editing-and-undoing-commits-in-local-repo)
 - [Recovering lost changes](#recovering-lost-changes-in-local-repo)
 - [Pushing commits](#pushing-commits-in-local-repo-to-remote-github-repo)
@@ -32,7 +32,7 @@
 * Git isn't aware of the file so stage <br />
 `git add README.md`  
 
-#### Committing changes
+#### Committing changes to staging
 * Change directory path to the `name_of_repo` folder <br />
 `cd /home/user/Desktop/name_of_repo`              
 * Add a file to staging <br />
