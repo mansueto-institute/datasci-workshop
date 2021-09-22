@@ -86,4 +86,4 @@ server <- function(input, output, session) {
 # Shiny Object ------------------------------------------------------------
 
 # Create Shiny app objects based on ui and server objects
-shinyApp(ui = ui, server = server)
+shinyApp(ui = ui, server = server, options = list(display.mode='showcase'))
