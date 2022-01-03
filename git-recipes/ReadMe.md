@@ -174,7 +174,7 @@
 * Create a .gitignore <br />
 `touch .gitignore`  
 * Add .env to the .gitignore (so secrets stay off GitHub) <br />
-`echo '.env' >> .gitignore` <br /> `echo '.vscode' >> .gitignore`  <br /> `echo '!.gitignore' >> .gitignore` 
+`echo '.env' >> .gitignore` <br /> `echo '.vscode' >> .gitignore`  <br /> `echo '__pycache__/' >> .gitignore` <br /> `echo '.*' >> .gitignore` <br /> `echo '!.gitignore' >> .gitignore` 
 * Remove .env from Git environment <br />
 `git rm --cached .env` <br /> `git rm --cached .env.*` 
 
