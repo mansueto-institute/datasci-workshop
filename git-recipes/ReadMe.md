@@ -179,6 +179,8 @@
 `git rm --cached .env` <br /> `git rm --cached .env.*` 
 
 #### Special `git clone` operations
+* Clone a branch 
+`git clone -b name_of_branch git@github.com:github_account/name_of_repo.git`
 * Clone only a single branch <br />
 `git clone git@github.com:github_account/name_of_repo.git --branch name_of_branch --single-branch`
 * Populate the working directory with all of the files present in the root directory <br />
