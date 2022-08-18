@@ -131,7 +131,7 @@ tract_traffic_crashes <- st_crop(tract_traffic_crashes, y = chi_bbox_crop) %>%
         panel.grid.major = element_line(color = "#ebebe5", size = 0.2),
         panel.grid.minor = element_blank(),
         plot.background = element_rect(fill = "#f5f5f2", color = NA),
-        text = ggplot2::element_text(family = "Lato"),
+        # text = ggplot2::element_text(size = 12),
         plot.title = element_text(face = 'bold',size=14),
         legend.title = element_text(size= 12),
         legend.text = element_text(size= 10),
@@ -159,7 +159,7 @@ colorhexes <- c("#0194D3","#D1D3D4","#ffc425","#49DEA4")
   geom_bar(stat = "identity", color = "white") +
   geom_text(aes(label=ifelse(share >= 0.075, paste0(round(value,0)),""), 
                 y=pos_id_value),
-                size = 4, fontface = "bold", family = 'Lato') +
+                size = 4, fontface = "bold") +
   ggplot2::scale_color_manual(values = c('white',"grey20")) + 
   ggplot2::scale_fill_manual(values = colorhexes ) + 
   scale_y_continuous(expand = c(0, 0)) +
@@ -175,7 +175,7 @@ colorhexes <- c("#0194D3","#D1D3D4","#ffc425","#49DEA4")
                  axis.text.y = ggplot2::element_text(size=12),
                  plot.subtitle = ggplot2::element_text(size=12, face = 'bold'),
                  plot.caption=element_text(size=12, hjust = 0, face = 'italic'),
-                 text = ggplot2::element_text(family = "Lato", size = 13, color = "#161616")))
+                 text = ggplot2::element_text(size = 13, color = "#161616")))
 
 ggsave(paste0(path_wd,'/bike_stackedbar.png'), pbar , dpi = 400, height =8, width=9) #
 
