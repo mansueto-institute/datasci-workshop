@@ -4,6 +4,8 @@
 * Git [How to Guide](https://github.com/git-guides/install-git) and [Git Handbook](https://guides.github.com/introduction/git-handbook/)
 * GitHub [CLI tool](https://cli.github.com/manual/) to perform GUI operations from command line
 
+* Git Guide: https://github.com/git-guides
+
 ---
 ### Table of Contents
 - [Create a new local repo](#start-a-new-local-repo-when-there-is-not-currently-a-github-remote-repo)
@@ -201,4 +203,15 @@
 * Set `cd ~/.ssh` and copy SSH key (view SSH key with `less id_rsa.pub` and hit `q` to exit)
 * Go to github.com, click 'Settings' > 'SSH and GPG keys' > 'New SSH key' and paste in contents of `~/.ssh/id_rsa.pub` and save.
 * Clone private repo to Midway: `git clone git@github.com:github_account/name_of_repo.git`
+
+
+#### Basic push recipe
+```
+git status -v
+git branch new-branch
+git checkout new-branch
+git add -A
+git commit -m "Add code"
+git push -u origin new-branch
+```
 
